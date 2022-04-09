@@ -11,8 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
     "koa-json": "^2.0.2",
-    "koa-router": "^10.1.1"
+    "koa-parser": "^1.0.8",
+    "koa-respond": "^2.1.0",
+    "koa-router": "^10.1.1",
+    "mongoose": "^6.2.10"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

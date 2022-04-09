@@ -1,18 +1,29 @@
-const Application = require('koa');
 const Koa = require('koa');
 const json = require('koa-json');
-const koaRouter = require('koa-router');
+const respond = require('koa-respond');
+const Router = require('koa-router');
+const Open  = require('./config/config');
+const bodyparser = require('koa-parser');
 
 const app = new Koa();
+const router = new Router();
 
-const router = new koaRouter();
+Open();
 
-app.use(router.routes()).use(router.allowedMethods());
-
-router.get('/test', async ctx => ctx.body = 'test endpoint')
-
+app.use(respond());
+app.use(bodyparser());
 app.use(json());
 
-app.use(async ctx => (ctx.body = {"msg":"Hola"}));
+require('./tasks/tasks.router')(router);
+
+ 
+
+
+//seteo de los middlewares
+
+app.use(router.routes());
+app.use(router.allowedMethods());
+
+
 
 app.listen(3000, () => console.log('Sever inciado...'));
