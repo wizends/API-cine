@@ -18,7 +18,9 @@ const prev = document.getElementById("prev");
 let prevPage = 0;
 
 
-
+const cancelClick = () => {
+    contenedorBusqueda.innerHTML = ""
+}
 
 const handlePage = (value) => { 
     fetch(`${API}/getall`,
@@ -36,7 +38,8 @@ const handlePage = (value) => {
         
         contenedorPeliculas.innerHTML += 
             `
-                <div class="card text-black" >
+            <div class="col card text-black">
+                <div>
                     <div class="card-body">
                         <h5 class="card-title">${data.docs[i].Title}</h5>
                         <p class="card-text">${data.docs[i].Plot}</p>
@@ -48,7 +51,7 @@ const handlePage = (value) => {
                     </ul>
                     
                 </div>  
-            
+            </div>
             `
     }
 })
@@ -68,19 +71,20 @@ fetch(`${API}/getall`,
         
         contenedorPeliculas.innerHTML += 
             `
-                <div class="card text-black" >
-                    <div class="card-body">
-                        <h5 class="card-title">${data.docs[i].Title}</h5>
-                        <p class="card-text">${data.docs[i].Plot}</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Estreno: ${data.docs[i].Released}</li>
-                        <li class="list-group-item">Genero: ${data.docs[i].Genre}</li>
-                        <li class="list-group-item">Director: ${data.docs[i].Director}</li>
-                    </ul>
-                    
-                </div>  
-            
+                <div class="col card text-black">
+                    <div style="margin-bottom:20px" >
+                        <div class="card-body">
+                            <h5 class="card-title">${data.docs[i].Title}</h5>
+                            <p class="card-text">${data.docs[i].Plot}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Estreno: ${data.docs[i].Released}</li>
+                            <li class="list-group-item">Genero: ${data.docs[i].Genre}</li>
+                            <li class="list-group-item">Director: ${data.docs[i].Director}</li>
+                        </ul>
+                        
+                    </div>  
+                </div>
             `
     }
     for (let i = 0; i < data.totalPages; i++) {
@@ -128,7 +132,7 @@ formSearch.onsubmit = (e) => {
 
             contenedorBusqueda.innerHTML = `
     <h4>Resultado de busqueda</h4>
-    <div class="card text-black" >
+    <div class="card text-black" style="margin-bottom:20px" >
         <div class="card-body">
             <h5 class="card-title">${data.Title}</h5>
             <p class="card-text">${data.Plot}</p>
@@ -138,7 +142,8 @@ formSearch.onsubmit = (e) => {
             <li class="list-group-item">Genero: ${data.Genre}</li>
             <li class="list-group-item">Director: ${data.Director}</li>
         </ul>
-        <button onClick="handleClick()" >Enviar a la bd</button>
+        <button class="btn btn-success" onClick="handleClick()" >Enviar a la bd</button>
+        <button class="btn btn-danger" onClick="cancelClick()" >Cancelar</button>
     </div>                     
     `;
             console.log(dataToSend);

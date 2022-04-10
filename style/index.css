@@ -1,0 +1,10 @@
+.col{
+    margin: 5px;
+}
+.pagination{
+    justify-content:center;
+    margin-top: 20px;
+}
+.btn{
+    margin-right: 0px!important;
+}
